@@ -1,0 +1,110 @@
+{
+  "name": "dabang-search",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@rematch/core": "^2.0.0-next.6",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
+    "http-proxy-middleware": "^1.0.6",
+    "immer": "^8.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "react-scripts": "4.0.1",
+    "redux": "^4.0.5",
+    "styled-components": "^5.2.1",
+    "styled-reset": "^4.3.1",
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "jest": true
+    },
+    "rules": {
+      "quotes": [
+        "warn",
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1,
+          "VariableDeclarator": 1,
+          "flatTernaryExpressions": true,
+          "ObjectExpression": "first",
+          "ignoredNodes": [
+            "TemplateLiteral"
+          ]
+        }
+      ],
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
+      "array-bracket-spacing": [
+        "warn",
+        "never"
+      ],
+      "arrow-parens": [
+        "warn",
+        "as-needed"
+      ],
+      "multiline-ternary": [
+        "error",
+        "always-multiline"
+      ],
+      "strict": 0,
+      "comma-dangle": [
+        "warn",
+        "only-multiline"
+      ],
+      "jsx-quotes": [
+        "error",
+        "prefer-double"
+      ],
+      "template-curly-spacing": "off",
+      "react/prefer-stateless-function": 0,
+      "react/jsx-filename-extension": 0,
+      "react/jsx-one-expression-per-line": 0,
+      "react-hooks/exhaustive-deps": 0
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
