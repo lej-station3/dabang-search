@@ -2,34 +2,34 @@ import React from 'react';
 import useSearch from './useSearch';
 import SearchResult from '../searchResult/index';
 import { Search, InputWrap, Input } from './styled';
-// import { ReactComponent as SearchSvg }  from './images/search.svg';
-
+import { ReactComponent as SearchSvg }  from './images/search.svg';
 
 function SearchInput() {
-  const [
+  const {
     subList,
     aptList,
-    etcList,
+    officeList,
+    keyword,  
+    loading,
     total,
-    keyword,
-
-    handleChange
-  ] = useSearch();
-
-  console.log('흠',aptList);
+    handleChange,
+  } = useSearch();
+  
   return(
     <>
       <Search>
         <InputWrap>
-          {/* <SearchSvg className="icon" width="25" height="25" /> */}
-          <Input type="text" value={keyword} onChange={handleChange} /> 
+          <SearchSvg className="icon" width="25" height="25" />
+          <Input type="text" name="keyword" value={keyword} onChange={handleChange} autoComplete="off" />
         </InputWrap> 
       </Search>  
       <SearchResult
         subList={subList}
         aptList={aptList}
-        etcList={etcList}
-        total= {total}
+        officeList={officeList}
+        loading={loading}
+        total={total}
+        keyword={keyword}
       />
     </>
   );

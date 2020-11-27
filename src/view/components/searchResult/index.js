@@ -1,62 +1,83 @@
 import React from 'react';
 
-import { Subway, Apt, Officetel, Ul, CartegortTitle  } from './styled';
+import { ResultList, ResultWrap, CartegoryTitle, ItemTitle, NoResultText  } from './styled';
+import useResult from './useResult';
 
-function printEtcList(subList) {
-  return subList.map(item => {
-    const type = item.type;
-    console.log('아이템',item);
-    console.log('타입',type);
-    console.log('섭웨이',item.subways);
-    switch(type){
-      case type === 'subway':
-        return(
-          <div>{item.name} </div>
-        );
-      case type === 'region':
-        break;
-      default:
-        return item;
-    }
-    return(
-      { item }
-    );
-  
-  });
-}
+function SearchResult({ subList, aptList, officeList, loading, total, keyword }) { 
+  const {
+    printSubList,
+    printOfficeList,
+    pringAptList,
+  } = useResult();
 
-function SearchResult({ subList, aptList, etcList, total }) {
-  if (total <= 0) {
+  if (keyword === '') {
     return (
-      <p>잠시만여</p>
+      <ResultWrap>
+        <div>
+          <NoResultText>인기검색</NoResultText>
+          <NoResultText>최근검색</NoResultText>
+        </div>
+      </ResultWrap>
+    );
+  }
+  
+  if (loading) {
+    return (
+      <ResultWrap>
+        <div>
+          로오딩
+        </div>
+      </ResultWrap>
     );
   }
 
-  return(
-    <Ul>
-      <Subway>
-        <CartegortTitle>지역,지하철,대학교</CartegortTitle>
-        {printEtcList(subList)}
-      </Subway>
-      <Apt>
-        <CartegortTitle>오피스텔</CartegortTitle>
-        {etcList.map(etc => (
-          <ul>
-            <li>{etc.name}</li>
-            <li>{etc.complex_address}</li>
-          </ul>
-        ))}
-      </Apt>
-      <Officetel>
-        <CartegortTitle>아파트</CartegortTitle>
-        {aptList.map(apt => (
-          <ul>
-            <li>{apt.name}</li>
-            <li>{apt.complex_address}</li>
-          </ul>
-        ))}
-      </Officetel>
-    </Ul>
+  console.log('쟈철',printSubList(subList));
+
+  if (total <= 0) {
+    console.log('total', total);
+    return (
+      <div>
+        <ResultWrap>
+          <div>
+            <NoResultText>검색 결과가 없습니다.</NoResultText>
+            <NoResultText>단어의 철자가 정확한지 확인해 보세요.</NoResultText>
+          </div>
+        </ResultWrap>
+      </div>
+    );
+  }
+
+  return (
+    <ResultWrap>
+      <div>
+        {
+          printSubList(subList).length === 0 ?
+            null : 
+            <ResultList>
+              <CartegoryTitle>지역,지하철,대학교</CartegoryTitle>
+              <ItemTitle>{printSubList(subList)}</ItemTitle>
+            </ResultList>
+        }
+
+        {
+          printOfficeList(officeList).length === 0 ? 
+            null :   
+            <ResultList>
+              <CartegoryTitle>오피스텔</CartegoryTitle>
+              <ItemTitle>{printOfficeList(officeList)}</ItemTitle>
+            </ResultList>
+        }
+
+        {
+          pringAptList(aptList).length === 0 ?
+            null : 
+            <ResultList>
+              <CartegoryTitle>아파트</CartegoryTitle>
+              <ItemTitle>{pringAptList(aptList)}</ItemTitle>
+            </ResultList>     
+        }
+      </div>
+    </ResultWrap>
   );
 }
 

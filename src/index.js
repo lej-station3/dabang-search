@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import Main from './view/index';
-import { GlobalStyle }  from './styled';
+import Routes from './route';
 import { Provider } from 'react-redux';
 import store from './store';
+import { GlobalStyle }  from './styled';
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <GlobalStyle />
-      <Main />
+      <Routes />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
