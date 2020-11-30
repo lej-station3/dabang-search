@@ -17,14 +17,13 @@ function useSearch() {
     },300);
 
     if (keyword === ''){
-      return(
-        setSubList([]),
-        setAptList([]),
-        setOfficeList([]),
-        setTotal(0)
-      );
+      setSubList([]);
+      setAptList([]);
+      setOfficeList([]);
+      setTotal(0);
+    } else {
+      setLoading(true);
     }
-    
     return () => {
       clearTimeout(debounce);
     };
@@ -38,8 +37,10 @@ function useSearch() {
   };
 
   const debounceFunc = debounce(400, false, value  => {
-    setDebounceKeysord(value);
-    getList();
+    if(value !==''){
+      setDebounceKeysord(value);
+      getList();
+    }
   });
 
   async function getList() {

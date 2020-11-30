@@ -2,9 +2,18 @@ import React from 'react';
 import { CategoryText, SearchIcon, Sub, RoomText, CategoryEtcText  } from './styled';
 
 function useResult(keyword) {
+  function highlightColor(value){
+    const keywordValue = value.inclueds(keyword);
+    const resultValue = keywordValue
+    return(
+      <div>
+        <span style={{ color: 'blue' }}>{keywordValue}</span>
+        <span>{value}</span>
 
+      </div>
+    );
+  }
   function printSubList(subList) {
-    
     return subList.map(item => {
       // function highlightColor(keyword){
       //   const value =  item.name ; 
@@ -24,8 +33,8 @@ function useResult(keyword) {
         case 'subway':
           return (
             <CategoryText>
-              <p>{item.name}</p>
-              {/* {highlightColor(keyword)} */}
+              {/* <p>{item.name}</p> */}
+              <div>{highlightColor(item.name)}</div>
               <SearchIcon>
                 {roomType && (
                   <RoomText><span>{roomType.main_room_type_str}</span></RoomText>
@@ -69,7 +78,7 @@ function useResult(keyword) {
     });
   }
   
-  function pringAptList(aptList) {
+  function printAptList(aptList) {
     return aptList.map(apt => (
       <CategoryEtcText>
         <p>{apt.name}</p>
@@ -81,7 +90,7 @@ function useResult(keyword) {
   return { 
     printSubList,
     printOfficeList,
-    pringAptList,
+    printAptList,
   };
 }
 export default useResult;

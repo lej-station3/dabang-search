@@ -6,7 +6,7 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword })
   const {
     printSubList,
     printOfficeList,
-    pringAptList,
+    printAptList,
   } = useResult(keyword);
 
   if (keyword === '') {
@@ -47,30 +47,24 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword })
   return (
     <ResultWrap>
       <div>
-        {
-          printSubList(subList).length === 0 ?
-            null : 
+        {subList.length !== 0 &&
             <ResultList>
               <CartegoryTitle>지역,지하철,대학교</CartegoryTitle>
               <ItemTitle>{printSubList(subList)}</ItemTitle>
             </ResultList>
         }
 
-        {
-          printOfficeList(officeList).length === 0 ? 
-            null :   
+        {officeList.length !== 0 && 
             <ResultList>
               <CartegoryTitle>오피스텔</CartegoryTitle>
               <ItemTitle>{printOfficeList(officeList)}</ItemTitle>
             </ResultList>
         }
 
-        {
-          pringAptList(aptList).length === 0 ?
-            null : 
+        {aptList.length !== 0 &&
             <ResultList>
               <CartegoryTitle>아파트</CartegoryTitle>
-              <ItemTitle>{pringAptList(aptList)}</ItemTitle>
+              <ItemTitle>{printAptList(aptList)}</ItemTitle>
             </ResultList>     
         }
       </div>
