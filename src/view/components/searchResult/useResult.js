@@ -3,29 +3,19 @@ import { CategoryText, SearchIcon, Sub, RoomText, CategoryEtcText  } from './sty
 
 function useResult(keyword) {
   function highlightColor(value){
-    const keywordValue = value.inclueds(keyword);
-    const resultValue = keywordValue
+    // const keywordValue = value.split(keyword);
+    const resultValue = keyword.split(value); //키워드값만
+    const result = value.split(resultValue);
+    console.log('키워드',result);
     return(
       <div>
-        <span style={{ color: 'blue' }}>{keywordValue}</span>
-        <span>{value}</span>
-
+        <span style={{ color: 'blue' }}>{resultValue}</span> 
+        <span>{result}</span>
       </div>
     );
   }
   function printSubList(subList) {
     return subList.map(item => {
-      // function highlightColor(keyword){
-      //   const value =  item.name ; 
-      //   const keywordValue = value.includes(keyword);
-      //   if(value === keywordValue) {
-      //     return(
-      //       <div>
-      //         <span style={{ color : 'blue' }}>{keywordValue}</span>
-      //         <span>{value}</span>
-      //       </div>
-      //     );
-      //   }}  
       const type = item.type;  
       const roomType = item.filter;
       
@@ -33,7 +23,6 @@ function useResult(keyword) {
         case 'subway':
           return (
             <CategoryText>
-              {/* <p>{item.name}</p> */}
               <div>{highlightColor(item.name)}</div>
               <SearchIcon>
                 {roomType && (
@@ -48,7 +37,7 @@ function useResult(keyword) {
           );
         default:
           return (
-            <CategoryText>
+            <CategoryText key={item.id}>
               {
                 item.type === 'region' ?
                   <p>{item.full_name}</p>
