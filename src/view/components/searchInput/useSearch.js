@@ -44,7 +44,7 @@ function useSearch() {
   });
 
   async function getList() {
-    const url='http://test-dabang-main.dabangapp.com/api/3/loc/keyword';
+    const url='/api/3/loc/keyword';
     try {
       const response = await axios.get(url, {
         params: {
