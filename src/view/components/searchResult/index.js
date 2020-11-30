@@ -1,22 +1,21 @@
 import React from 'react';
-
-import { ResultList, ResultWrap, CartegoryTitle, ItemTitle, NoResultText  } from './styled';
 import useResult from './useResult';
+import { ResultList, ResultWrap, CartegoryTitle, ItemTitle, NoResultText, NoResult  } from './styled';
 
 function SearchResult({ subList, aptList, officeList, loading, total, keyword }) { 
   const {
     printSubList,
     printOfficeList,
     pringAptList,
-  } = useResult();
+  } = useResult(keyword);
 
   if (keyword === '') {
     return (
       <ResultWrap>
-        <div>
+        <NoResult>
           <NoResultText>인기검색</NoResultText>
           <NoResultText>최근검색</NoResultText>
-        </div>
+        </NoResult>
       </ResultWrap>
     );
   }
@@ -25,23 +24,21 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword })
     return (
       <ResultWrap>
         <div>
-          로오딩
+          <p className="loadging"> Loading. . .</p>
         </div>
       </ResultWrap>
     );
   }
-
-  console.log('쟈철',printSubList(subList));
 
   if (total <= 0) {
     console.log('total', total);
     return (
       <div>
         <ResultWrap>
-          <div>
+          <NoResult>
             <NoResultText>검색 결과가 없습니다.</NoResultText>
             <NoResultText>단어의 철자가 정확한지 확인해 보세요.</NoResultText>
-          </div>
+          </NoResult>
         </ResultWrap>
       </div>
     );

@@ -11,6 +11,24 @@ function useSearch() {
   const [loading, setLoading] = useState(null);
   const [total, setTotal] = useState(0);
 
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      debounceFunc(keyword);
+    },300);
+
+    if (keyword === ''){
+      return(
+        setSubList([]),
+        setAptList([]),
+        setOfficeList([]),
+        setTotal(0)
+      );
+    }
+    
+    return () => {
+      clearTimeout(debounce);
+    };
+  }, [keyword]);
 
   const handleChange = e => {
     console.log(e);
@@ -23,15 +41,6 @@ function useSearch() {
     setDebounceKeysord(value);
     getList();
   });
-
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      debounceFunc(keyword);
-    },300);
-    return () => {
-      clearTimeout(debounce);
-    };
-  }, [keyword]);
 
   async function getList() {
     const url='http://test-dabang-main.dabangapp.com/api/3/loc/keyword';

@@ -17,6 +17,11 @@ export const InputWrap = styled.div`
     border-radius: 3px;
     background-color: #fff;
     box-shadow: 0 7px 15px -2px rgba(0, 0, 0, 0.1);
+    &:focus{
+      border: 1px solid #60a3ff;
+      //누를때 꾸욱 되는거 
+    }
+
     .icon{
     position: absolute;
     top: 50%;
@@ -28,11 +33,9 @@ export const InputWrap = styled.div`
 export const Input = styled.input.attrs({
   type: 'text',
 })`
-    width: 600px;
+    width: 100%;
     padding: 0 25px;
     margin: 25px;
     margin-left: 40px;
-    &:active{
-      /* display: block; */
-    }
+  
 `;

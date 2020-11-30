@@ -1,42 +1,57 @@
 import React from 'react';
-import { CategoryText, SubwayIcon, SubIcon, Sub,  RoomIcon, RoomText, CategoryEtcText  } from './styled';
+import { CategoryText, SearchIcon, Sub, RoomText, CategoryEtcText  } from './styled';
 
-function useResult() {
+function useResult(keyword) {
+
   function printSubList(subList) {
+    
     return subList.map(item => {
-      const type = item.type;
-      // type ==='subway' 가 아니다!!!!! 걍 그 값이 들어가야,,,
+      // function highlightColor(keyword){
+      //   const value =  item.name ; 
+      //   const keywordValue = value.includes(keyword);
+      //   if(value === keywordValue) {
+      //     return(
+      //       <div>
+      //         <span style={{ color : 'blue' }}>{keywordValue}</span>
+      //         <span>{value}</span>
+      //       </div>
+      //     );
+      //   }}  
+      const type = item.type;  
       const roomType = item.filter;
+      
       switch(type){
         case 'subway':
           return (
             <CategoryText>
               <p>{item.name}</p>
-              <SubwayIcon>
-                <SubIcon>
-                  {item.subways.map(sub => (
-                    <Sub color={sub.color}>{sub.shortName}</Sub>
-                  ))}
-                </SubIcon>
+              {/* {highlightColor(keyword)} */}
+              <SearchIcon>
                 {roomType && (
-                  <RoomIcon>
-                    <RoomText><span>{roomType.main_room_type_str}</span>)</RoomText>
-                  </RoomIcon>
+                  <RoomText><span>{roomType.main_room_type_str}</span></RoomText>
                 )}
-              </SubwayIcon>
+                {item.subways.map(sub => (
+                  <Sub color={sub.color}>{sub.shortName}</Sub>
+                ))}
+               
+              </SearchIcon>
             </CategoryText>
-          );
-        case 'region':
-          return (
-            <CategoryText>{item.full_name}</CategoryText>
-          );
-        case 'univ':
-          return (
-            <CategoryText>{item.name}</CategoryText>
           );
         default:
           return (
-            <CategoryText>{item.name}</CategoryText>
+            <CategoryText>
+              {
+                item.type === 'region' ?
+                  <p>{item.full_name}</p>
+                  :
+                  <p>{item.name}</p>
+              }
+              <SearchIcon>
+                {roomType && (
+                  <RoomText><span>{roomType.main_room_type_str}</span></RoomText>
+                )}
+              </SearchIcon>
+            </CategoryText>
           );
       }
     });

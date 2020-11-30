@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components';
-
+import styled from 'styled-components';
 
 export const ResultWrap = styled.div`
   display: flex;
@@ -13,17 +12,27 @@ export const ResultWrap = styled.div`
     margin-top: 10px;
     border: 1px solid #dddddd;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+
+    .loadging {
+      margin: 0 auto;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
 `;
 
-export const NoResultText = styled.p`
+export const NoResult = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
-  padding: 10px;
+  margin-top: 10px;
+`;
+
+export const NoResultText = styled.p`
+  padding: 40px;
   font-size: 16px;
   color: fff;
-  font-weight: 400;
+  font-weight: 500;
 `;
 
 export const ResultList = styled.div`
@@ -53,21 +62,19 @@ export const ItemTitle = styled.ul`
   cursor: pointer;
 `;
 
-
 // useResult 
 
 export const CategoryText = styled.li`
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px 10px;
 `; 
 
 export const CategoryEtcText = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  //요거 뭐더라
-  padding: 15px 0;
+  padding: 15px 10px;
   .adress{
     margin-top: 7px;
     font-weight: normal;
@@ -79,35 +86,30 @@ export const CategoryEtcText = styled.li`
   }
 `;
 
-export const SubwayIcon = styled.div`
+export const SearchIcon = styled.div`
   margin-left: auto;
-`;
-
-
-export const SubIcon = styled.div`
-
 `;
 
 export const Sub = styled.span`
   background-color: ${({ color }) => color || 'white'};
   min-width: 18px;
-  height: 18px;
-  padding: 2px 5px;
+  padding: 3px 6px;
   color: #fff;
   font-size: 10px;
   text-align: center;
   line-height: 18px;
-  border-radius: 50%;
+  border-radius: 18px;
 
   & + span {
-    margin-left: 10px;
+    margin-left: 4px;
   }
 `;
 
-export const RoomIcon = styled.div`
-
-`;
-
-export const RoomText = styled.div`
- 
+export const RoomText = styled.span`
+  margin-right: 4px;
+  padding: 2px 7px;
+  border: 1px solid #000;
+  border-radius: 7px;
+  font-size: 10px;
+  color: #000; 
 `;
