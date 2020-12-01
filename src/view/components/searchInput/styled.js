@@ -9,6 +9,10 @@ export const Search = styled.div `
   background: linear-gradient(116deg, #13b7cf 0%, #365bb4 47%, #365bb4 47%);
 `;
 
+export const SearchWrap = styled.div`
+  
+`;
+
 export const InputWrap = styled.div`    
     position: relative;
     width: 1180px;

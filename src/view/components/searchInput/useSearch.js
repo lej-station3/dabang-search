@@ -1,15 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { debounce } from 'throttle-debounce';
 
+function reducer(state,action) {
+  return {
+    ...state,
+    ...action,
+  };
+}
+
 function useSearch() {
-  const [subList, setSubList] = useState([]);
-  const [aptList, setAptList] = useState([]);
-  const [officeList, setOfficeList] = useState([]);
-  const [keyword, setKeyword] = useState('');
-  const [debounceKeyword, setDebounceKeysord] = useState('');
-  const [loading, setLoading] = useState(null);
-  const [total, setTotal] = useState(0);
+  const [state, setState] = useReducer(reducer, {
+    subList: [],
+    aptList: [],
+    officeList: [],
+    keyword: '',
+    loading: false,
+    total: 0,
+  });
+
+  const { keyword } = state;
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -17,12 +27,13 @@ function useSearch() {
     },300);
 
     if (keyword === ''){
-      setSubList([]);
-      setAptList([]);
-      setOfficeList([]);
-      setTotal(0);
+      setState({
+        state
+      });
     } else {
-      setLoading(true);
+      setState({
+        loading: true
+      });
     }
     return () => {
       clearTimeout(debounce);
@@ -30,21 +41,23 @@ function useSearch() {
   }, [keyword]);
 
   const handleChange = e => {
-    console.log(e);
-    const { value } = e.currentTarget;
-    setKeyword(value);
-    setLoading(true);
+    const { name,value } = e.currentTarget;
+    //오브젝트를 string으로 변환
+    setState({
+      [name]: value,
+      loading: true
+    });
   };
 
   const debounceFunc = debounce(400, false, value  => {
-    if(value !==''){
-      setDebounceKeysord(value);
+    if(value !=='') {
       getList();
     }
   });
 
   async function getList() {
     const url='/api/3/loc/keyword';
+    const keyword = state.keyword;
     try {
       const response = await axios.get(url, {
         params: {
@@ -52,27 +65,22 @@ function useSearch() {
           keyword,
         }
       });
-      setSubList(response.data.filter(item => item.complex_type === null));
-      setAptList(response.data.filter(item => item.complex_type === 0));
-      setOfficeList(response.data.filter(item => item.complex_type === 1));
-      setTotal(response.data.length);
-      setLoading(false);
-
+      setState({
+        subList: response.data.filter(item => item.complex_type === null),
+        aptList: response.data.filter(item => item.complex_type === 0),
+        officeList: response.data.filter(item => item.complex_type === 1),
+        total: response.data.length,
+        loading: false,
+      });
     } catch {
       console.log('error');
-      setLoading(false);
+      setState({
+        loading: false,
+      });
     }
   }
-
   return {
-    subList,
-    aptList,
-    officeList,
-    keyword,
-    debounceKeyword,
-    loading,
-    total,
-    debounceFunc,
+    state,
     handleChange,
   };
 }
