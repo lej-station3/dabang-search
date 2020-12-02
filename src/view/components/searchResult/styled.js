@@ -5,11 +5,12 @@ export const ResultWrap = styled.div`
   justify-content: center;
   width: 100%;
   height: 392px;
+  margin-top: 10px;
 
   > div {
     display: flex;
     width: 1180px;
-    margin-top: 10px;
+    margin-top: 30px;
     border: 1px solid #dddddd;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
 

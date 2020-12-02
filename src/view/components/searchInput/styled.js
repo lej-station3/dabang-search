@@ -10,13 +10,19 @@ export const Search = styled.div `
 `;
 
 export const SearchWrap = styled.div`
-  
+  width: 100%;
+  height: 100%;
+`;
+
+export const Form = styled.form`
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  width: 1180px;
+  height: 60px;
 `;
 
 export const InputWrap = styled.div`    
-    position: relative;
-    width: 1180px;
-    height: 60px;
     margin-bottom: 20px;
     border-radius: 3px;
     background-color: #fff;
@@ -25,7 +31,6 @@ export const InputWrap = styled.div`
       border: 1px solid #60a3ff;
       //누를때 꾸욱 되는거 
     }
-
     .icon{
     position: absolute;
     top: 50%;
