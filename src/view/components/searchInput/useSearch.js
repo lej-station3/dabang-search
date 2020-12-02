@@ -26,7 +26,7 @@ function useSearch() {
       debounceFunc(keyword);
     },300);
 
-    if (keyword === ''){
+    if (keyword === '') {
       setState({
         state
       });

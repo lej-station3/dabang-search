@@ -3,7 +3,6 @@ import useResult from './useResult';
 import { ResultList, ResultWrap, CartegoryTitle, ItemTitle, NoResultText, NoResult  } from './styled';
 
 function SearchResult({ subList, aptList, officeList, loading, total, keyword }) { 
-
   const {
     printSubList,
     printOfficeList,
@@ -16,7 +15,7 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword })
         <NoResult>
           <NoResultText>인기검색</NoResultText>
           <NoResultText>
-            최근검색
+            ㄹㄹ
           </NoResultText>
         </NoResult>
       </ResultWrap>
