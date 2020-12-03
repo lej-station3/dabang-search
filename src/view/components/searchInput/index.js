@@ -12,7 +12,6 @@ function SearchInput() {
   } = useSearch();
 
   const { subList, aptList, officeList, loading, total, keyword } = state;
-
   const [isOpen, setIsOpen] = useState(false);
   const _open = useRef(null);
 

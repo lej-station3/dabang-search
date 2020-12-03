@@ -4,7 +4,6 @@ export const ResultWrap = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 392px;
   margin-top: 10px;
 
   > div {
@@ -27,6 +26,11 @@ export const NoResult = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  /* margin-bottom: 30px;
+  margin-left: 10px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 600; */
 `;
 
 export const NoResultText = styled.p`
@@ -41,7 +45,7 @@ export const ResultList = styled.div`
   flex-grow: 1;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 392px;
   margin-left: 40px;
 `;
 
@@ -55,7 +59,8 @@ export const CartegoryTitle = styled.div`
 export const ItemTitle = styled.ul`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  justify-content: center;
+  margin-top: 12px;
   overflow-y: scroll;
   list-style: none;
   color: #000;
@@ -95,7 +100,7 @@ export const Sub = styled.span`
   background-color: ${({ color }) => color || 'white'};
   min-width: 18px;
   padding: 3px 6px;
-  color: #fff;
+  color: ${({ isFilter }) => isFilter ? '#000' : '#fff'};
   font-size: 10px;
   text-align: center;
   line-height: 18px;

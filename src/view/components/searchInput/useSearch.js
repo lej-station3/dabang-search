@@ -50,7 +50,7 @@ function useSearch() {
   };
 
   const debounceFunc = debounce(400, false, value  => {
-    if(value !=='') {
+    if (value !=='') {
       getList();
     }
   });
@@ -84,5 +84,4 @@ function useSearch() {
     handleChange,
   };
 }
-
 export default useSearch;

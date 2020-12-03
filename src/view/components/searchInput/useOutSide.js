@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 // true라면 false로 만들어라 
 
 function useOutSide(ref, handler) {
+  
   const openResult = e => {
     if (ref.current && !ref.current.contains(e.target)) {
       handler && handler(false);

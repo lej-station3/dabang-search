@@ -27,11 +27,10 @@ export const InputWrap = styled.div`
     border-radius: 3px;
     background-color: #fff;
     box-shadow: 0 7px 15px -2px rgba(0, 0, 0, 0.1);
-    &:focus{
+    &:focus {
       border: 1px solid #60a3ff;
-      //누를때 꾸욱 되는거 
     }
-    .icon{
+    .icon {
     position: absolute;
     top: 50%;
     left: 30px;
@@ -46,5 +45,4 @@ export const Input = styled.input.attrs({
     padding: 0 25px;
     margin: 25px;
     margin-left: 40px;
-  
 `;

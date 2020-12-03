@@ -6,18 +6,21 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword })
   const {
     printSubList,
     printOfficeList,
-    printAptList,
+    printAptList, 
+    recentLocalStorage,
+    serchHistory,
   } = useResult(keyword);
 
   if (keyword === '') {
     return (
       <ResultWrap>
-        <NoResult>
-          <NoResultText>인기검색</NoResultText>
-          <NoResultText>
-            ㄹㄹ
-          </NoResultText>
-        </NoResult>
+        <ResultList>
+          <NoResult>인기 검색</NoResult>
+          <NoResult>최근 검색 기록</NoResult>
+          <ItemTitle>
+            {recentLocalStorage(serchHistory)}
+          </ItemTitle>
+        </ResultList>
       </ResultWrap>
     );
   }
