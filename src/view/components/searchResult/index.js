@@ -13,15 +13,16 @@ import {
   LodingText, LoadingWrap,
 } from './styled';
 
-function SearchResult({ subList, aptList, officeList, loading, total, keyword }) { 
+function SearchResult({ subList, aptList, officeList, loading, total, keyword, roomId }) { 
   const {
     serchHistory,
     printSubList,
     printOfficeList,
     printAptList, 
   } = useResult(keyword);
-  
+
   const { recentLocalStorage } = useLocalResult(serchHistory);
+  const numberCheck = isNaN(keyword);
 
   if (keyword === '') {
     return (
@@ -48,7 +49,12 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword })
       <ResultWrap>
         <LoadingWrap>
           <LodingText>
-            검색 결과가 없습니다 🥺 단어의 철자가 정확한지 확인해 보세요.
+            {!numberCheck ? (
+              <span>매물번호: {roomId}</span>
+            ):(
+              <span>검색 결과가 없습니다 🥺 단어의 철자가 정확한지 확인해 보세요.</span>
+            )   
+            }
           </LodingText>
         </LoadingWrap>
       </ResultWrap>

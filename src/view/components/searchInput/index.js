@@ -17,7 +17,7 @@ function SearchInput() {
     handleChange,
   } = useSearch();
 
-  const { subList, aptList, officeList, loading, total, keyword } = state;
+  const { subList, aptList, officeList, loading, total, keyword, roomId } = state;
   const {
     _open,
     isOpen,
@@ -39,6 +39,7 @@ function SearchInput() {
               loading={loading}
               total={total}
               keyword={keyword}
+              roomId={roomId}
             /> 
           }    
         </Form>
