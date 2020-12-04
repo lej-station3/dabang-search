@@ -1,53 +1,60 @@
 import React from 'react';
+
 import useResult from './useResult';
-import { ResultList, ResultWrap, CartegoryTitle, ItemTitle, NoResultText, NoResult  } from './styled';
+import useLocalResult from './useLocalResult';
+
+import LodingScreen from './components/loading';
+
+import {
+  RecentList,
+  ResultList, ResultWrap, CartegoryTitle, ItemTitle,
+  NoResult,
+  SearchTitle,
+  LodingText, LoadingWrap,
+} from './styled';
 
 function SearchResult({ subList, aptList, officeList, loading, total, keyword }) { 
   const {
+    serchHistory,
     printSubList,
     printOfficeList,
     printAptList, 
-    recentLocalStorage,
-    serchHistory,
   } = useResult(keyword);
+  
+  const { recentLocalStorage } = useLocalResult(serchHistory);
 
   if (keyword === '') {
     return (
       <ResultWrap>
-        <ResultList>
+        <RecentList>
           <NoResult>인기 검색</NoResult>
           <NoResult>최근 검색 기록</NoResult>
-          <ItemTitle>
+          <SearchTitle>
             {recentLocalStorage(serchHistory)}
-          </ItemTitle>
-        </ResultList>
+          </SearchTitle>
+        </RecentList>
       </ResultWrap>
     );
   }
   
   if (loading) {
     return (
-      <ResultWrap>
-        <div>
-          <p className="loadging"> Loading. . .</p>
-        </div>
-      </ResultWrap>
+      <LodingScreen />
     );
   }
 
   if (total <= 0) {
-    console.log('total', total);
     return (
-      <div>
-        <ResultWrap>
-          <NoResult>
-            <NoResultText>검색 결과가 없습니다.</NoResultText>
-            <NoResultText>단어의 철자가 정확한지 확인해 보세요.</NoResultText>
-          </NoResult>
-        </ResultWrap>
-      </div>
+      <ResultWrap>
+        <LoadingWrap>
+          <LodingText>
+            검색 결과가 없습니다 🥺 단어의 철자가 정확한지 확인해 보세요.
+          </LodingText>
+        </LoadingWrap>
+      </ResultWrap>
     );
   }
+  
   return (
     <ResultWrap>
       <div>

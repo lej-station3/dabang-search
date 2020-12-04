@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ResultWrap = styled.div`
   display: flex;
@@ -12,41 +12,37 @@ export const ResultWrap = styled.div`
     margin-top: 30px;
     border: 1px solid #dddddd;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
-
-    .loadging {
-      margin: 0 auto;
-      margin-top: 20px;
-      font-size: 16px;
-      font-weight: 600;
-    }
   }
 `;
 
 export const NoResult = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  /* margin-bottom: 30px;
-  margin-left: 10px;
+  margin: 50px;
   color: #000;
-  font-size: 18px;
-  font-weight: 600; */
+  font-size: 15px;
+  font-weight: 600;
+  & ~ & {
+    margin-bottom: 15px;
+  }
 `;
 
-export const NoResultText = styled.p`
-  padding: 40px;
-  font-size: 16px;
-  color: fff;
-  font-weight: 500;
-`;
 
-export const ResultList = styled.div`
+const resultStd = css`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   width: 100%;
-  height: 392px;
-  margin-left: 40px;
+`;
+
+export const RecentList = styled.div`
+  ${resultStd};
+  height: 400px;
+`;
+
+export const ResultList = styled.div`
+  ${resultStd}
+  margin-left: 50px;
 `;
 
 export const CartegoryTitle = styled.div`
@@ -56,16 +52,25 @@ export const CartegoryTitle = styled.div`
     color: #000;
 `;
 
-export const ItemTitle = styled.ul`
+const titleStd = css`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-top: 12px;
+  height: 400px;
   overflow-y: scroll;
   list-style: none;
   color: #000;
   font-size: 14px;
   cursor: pointer;
+`;
+
+export const SearchTitle = styled.ul`
+   ${titleStd}
+   margin-left: 40px;
+`;
+
+export const ItemTitle = styled.ul`
+  ${titleStd}
+  margin-top: 12px;
 `;
 
 // useResult 
@@ -76,11 +81,9 @@ export const CategoryText = styled.li`
   padding: 15px 10px;
 `; 
 
-export const CategoryEtcText = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 15px 10px;
+const categoryStd = css`
+   display: flex;
+   padding: 15px 10px;
   .adress{
     margin-top: 7px;
     font-weight: normal;
@@ -92,6 +95,18 @@ export const CategoryEtcText = styled.li`
   }
 `;
 
+//억지로 재사용 금G
+export const LocalCategoryEtcText = styled.li`
+  ${categoryStd}
+  align-items: center;
+`;
+
+export const CategoryEtcText = styled.li`
+  ${categoryStd}
+  flex-direction: column;
+  justify-content: center;  
+`;
+
 export const SearchIcon = styled.div`
   margin-left: auto;
 `;
@@ -100,7 +115,13 @@ export const Sub = styled.span`
   background-color: ${({ color }) => color || 'white'};
   min-width: 18px;
   padding: 3px 6px;
-  color: ${({ isFilter }) => isFilter ? '#000' : '#fff'};
+  ${({ isFilter }) => isFilter ? css`
+    color: #000;
+    border: 1px solid #000;
+  ` : css`
+    color: #fff;
+    border: 0;
+  `};
   font-size: 10px;
   text-align: center;
   line-height: 18px;
@@ -118,4 +139,17 @@ export const RoomText = styled.span`
   border-radius: 7px;
   font-size: 10px;
   color: #000; 
+`;
+
+// loading 
+export const LoadingWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+`;
+
+export const LodingText = styled.p`
+  font-size: 15px;
+  font-weight: 600;
 `;

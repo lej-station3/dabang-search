@@ -78,10 +78,6 @@
         "warn",
         "as-needed"
       ],
-      "multiline-ternary": [
-        "error",
-        "always-multiline"
-      ],
       "strict": 0,
       "comma-dangle": [
         "warn",

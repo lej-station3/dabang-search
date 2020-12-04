@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-// 폼이 열렸으면 true인 상태!! 
-// 돔의 값이 있고 돔에 타겟이 없으면 useOutSide를 실행해보고
-// true라면 false로 만들어라 
+function useOutSide() {
+  const [isOpen, setIsOpen] = useState(false);
+  const _open = useRef(null);
 
-function useOutSide(ref, handler) {
-  
   const openResult = e => {
-    if (ref.current && !ref.current.contains(e.target)) {
-      handler && handler(false);
-    } else {
-      handler && handler(true);
-    }
+    if (_open.current && !_open.current.contains(e.target)) {
+      setIsOpen && setIsOpen(false);
+     
+    } else { 
+      setIsOpen && setIsOpen(true);
+    };
   };
 
   useEffect(() => {
@@ -19,6 +18,12 @@ function useOutSide(ref, handler) {
     return () => {
       document.removeEventListener('click', openResult);
     };
-  }, [ref, openResult]);
+  }, [_open, openResult]);
+
+  return {
+    _open,
+    isOpen,
+  };
 }
+
 export default useOutSide;

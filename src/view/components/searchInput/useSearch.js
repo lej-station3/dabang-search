@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from 'react';
+
 import axios from 'axios';
 import { debounce } from 'throttle-debounce';
 
@@ -18,7 +19,6 @@ function useSearch() {
     loading: false,
     total: 0,
   });
-
   const { keyword } = state;
 
   useEffect(() => {
@@ -42,7 +42,6 @@ function useSearch() {
 
   const handleChange = e => {
     const { name,value } = e.currentTarget;
-    //오브젝트를 string으로 변환
     setState({
       [name]: value,
       loading: true
@@ -84,4 +83,5 @@ function useSearch() {
     handleChange,
   };
 }
+
 export default useSearch;
