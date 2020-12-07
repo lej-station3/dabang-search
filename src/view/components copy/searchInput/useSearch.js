@@ -15,12 +15,14 @@ const INIT = {
   aptList: [],
   officeList: [],
   keyword: '',
+  //렌더링 관련된거는 따로 관리하장,,! isLoading
+  loading: false,
   total: 0,
 };
 
 
 function useSearch(setIsOpen) {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [state, setState] = useReducer(reducer, INIT);
   const { keyword } = state;
 
@@ -34,7 +36,9 @@ function useSearch(setIsOpen) {
         state
       });
     } else {
-      setLoading(true);
+      setState({
+        loading: true
+      });
     }
     return () => {
       clearTimeout(debounce);
@@ -42,12 +46,12 @@ function useSearch(setIsOpen) {
   }, [keyword]);
 
   //changeKeword 어떤걸 바꿀 수 있는지 써주는게 좋음
-  const changeKeyword = e => {
+  const handleChange = e => {
     const { name,value } = e.currentTarget;
     setState({
       [name]: value,
+      loading: true
     });
-    setLoading(true);
   };
 
   const debounceFunc = debounce(400, false, value  => {
@@ -71,11 +75,13 @@ function useSearch(setIsOpen) {
         aptList: response.data.filter(item => item.complex_type === 0),
         officeList: response.data.filter(item => item.complex_type === 1),
         total: response.data.length,
+        loading: false,
       });
-      setLoading(loading);
     } catch {
       console.log('error');
-      setLoading(loading);
+      setState({
+        loading: false,
+      });
     }
   }
 
@@ -86,7 +92,7 @@ function useSearch(setIsOpen) {
 
   return {
     state,
-    changeKeyword,
+    handleChange,
     reset,
   };
 }

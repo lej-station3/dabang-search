@@ -1,7 +1,4 @@
 import React from 'react';
-
-import UseLocalStorge from './useLocalStorge';
-
 import { 
   CategoryText, SearchIcon, Sub, 
   RoomTypeText, CategoryEtcText,
@@ -69,6 +66,9 @@ function useResult(close) {
   }
 
   function handleClick(result) {
+    // || ?? 다시보기
+    const serchHistory = JSON.parse(localStorage.getItem('saveSearch')) ?? [];
+
     const temp = {
       child: [],
       full_name: '',
@@ -114,10 +114,22 @@ function useResult(close) {
       default :
         break;
     }
-    UseLocalStorge(temp);
+    const idx = serchHistory.findIndex(history => history.id === temp.id);
+    if (idx !== -1) {
+      const delArray = serchHistory.splice(idx, 1);
+      serchHistory.unshift(...delArray);
+    } else {
+      serchHistory.unshift(temp);
+    }
+    
+    if (serchHistory.length > 10) {
+      serchHistory.splice(10, 1);
+    }
+
+    localStorage.setItem('saveSearch',JSON.stringify(serchHistory));
+
     close();
   }
-
 
   return { 
     printSubList,
