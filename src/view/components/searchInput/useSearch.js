@@ -75,12 +75,12 @@ function useSearch() {
       });
     }
   }
-
+  
   async function getList() {
     const url = '/api/3/loc/keyword';
     const keyword = state.keyword;
     const numberCheck = isNaN(keyword);
-
+  
     try {
       const response = await axios.get(url, {
         params: {
@@ -109,7 +109,7 @@ function useSearch() {
       });
     }
   }
-
+  
   return {
     state,
     handleChange,

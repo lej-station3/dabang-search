@@ -1,22 +1,22 @@
 import React from 'react';
 import { 
   CategoryText, SearchIcon, Sub, 
-  RoomText, CategoryEtcText,
+  RoomTypeText, CategoryEtcText,
 } from './styled';
 
 function useResult(keyword) {
 
-  function highlightColor(value) {
-    const resultValue = keyword.split(' ');
-    const firstResultValue = resultValue[0];
-    const result = value.split(resultValue);
-    return (
-      <div>
-        <span style={{ color: 'blue' }} >{firstResultValue}</span> 
-        <span>{result}</span>
-      </div>
-    );
-  }
+  // function highlightColor(value) {
+  //   const resultValue = keyword.split(' ');
+  //   const firstResultValue = resultValue[0];
+  //   const result = value.split(resultValue);
+  //   return (
+  //     <div>
+  //       <span style={{ color: 'blue' }} >{firstResultValue}</span> 
+  //       <span>{result}</span>
+  //     </div>
+  //   );
+  // }
   function printSubList(subList) {
     return subList.map(item => {
       const type = item.type;  
@@ -29,7 +29,7 @@ function useResult(keyword) {
               <div>{item.name}</div>
               <SearchIcon>
                 {roomType && (
-                  <RoomText><span>{roomType.main_room_type_str}</span></RoomText>
+                  <RoomTypeText><span>{roomType.main_room_type_str}</span></RoomTypeText>
                 )}
                 {item.subways.map((sub, key) => (
                   <Sub key={key} color={sub.color}>{sub.shortName}</Sub>
@@ -51,7 +51,7 @@ function useResult(keyword) {
               }
               <SearchIcon>
                 {roomType && (
-                  <RoomText><span>{roomType.main_room_type_str}</span></RoomText>
+                  <RoomTypeText><span>{roomType.main_room_type_str}</span></RoomTypeText>
                 )}
               </SearchIcon>
             </CategoryText>

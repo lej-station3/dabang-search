@@ -108,7 +108,7 @@ export const CategoryEtcText = styled.li`
 `;
 
 export const SearchIcon = styled.div`
-  margin-left: auto;
+  margin-left: auto; 
 `;
 
 export const Sub = styled.span`
@@ -132,13 +132,22 @@ export const Sub = styled.span`
   }
 `;
 
-export const RoomText = styled.span`
-  margin-right: 4px;
+const RoomStd = css`
   padding: 2px 7px;
   border: 1px solid #000;
   border-radius: 7px;
   font-size: 10px;
   color: #000; 
+`;
+
+
+export const RoomText = styled.span`
+  ${RoomStd}
+`;
+
+export const RoomTypeText = styled.span`
+  ${RoomStd}
+  margin-right: 4px;
 `;
 
 // loading 
@@ -152,4 +161,8 @@ export const LoadingWrap = styled.div`
 export const LodingText = styled.p`
   font-size: 15px;
   font-weight: 600;
+`;
+
+export const SaleWrap = styled.div`
+  text-align: center;
 `;

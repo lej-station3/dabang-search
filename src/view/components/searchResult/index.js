@@ -11,6 +11,7 @@ import {
   NoResult,
   SearchTitle,
   LodingText, LoadingWrap,
+  SaleWrap,
 } from './styled';
 
 function SearchResult({ subList, aptList, officeList, loading, total, keyword, roomId }) { 
@@ -50,7 +51,10 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword, r
         <LoadingWrap>
           <LodingText>
             {!numberCheck ? (
-              <span>매물번호: {roomId}</span>
+              <SaleWrap>
+                <div>매물번호: {roomId}</div>
+                <div>매물정보 보러가기</div>
+              </SaleWrap>
             ):(
               <span>검색 결과가 없습니다 🥺 단어의 철자가 정확한지 확인해 보세요.</span>
             )   
