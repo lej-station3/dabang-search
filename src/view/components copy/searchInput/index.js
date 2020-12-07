@@ -20,7 +20,7 @@ function SearchInput() {
 
   const {
     state,
-    changeKeyword,
+    handleChange,
     reset,
   } = useSearch(setIsOpen);
 
@@ -32,7 +32,7 @@ function SearchInput() {
         <Form ref={_open}>
           <InputWrap>
             <SearchSvg className="icon" width="25" height="25"/>
-            <Input type="text" name="keyword" value={keyword} onChange={changeKeyword} autoComplete="off" />
+            <Input type="text" name="keyword" value={keyword} onChange={handleChange} autoComplete="off" />
           </InputWrap> 
           {isOpen &&  
             <SearchResult
