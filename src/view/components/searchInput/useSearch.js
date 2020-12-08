@@ -20,7 +20,7 @@ const INIT = {
 
 
 function useSearch(setIsOpen) {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [state, setState] = useReducer(reducer, INIT);
   const { keyword } = state;
 
@@ -72,10 +72,10 @@ function useSearch(setIsOpen) {
         officeList: response.data.filter(item => item.complex_type === 1),
         total: response.data.length,
       });
-      setLoading(loading);
+      setLoading(false);
     } catch {
       console.log('error');
-      setLoading(loading);
+      setLoading(false);
     }
   }
 
@@ -86,6 +86,7 @@ function useSearch(setIsOpen) {
 
   return {
     state,
+    isLoading,
     changeKeyword,
     reset,
   };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UseLocalStorge from './useLocalStorge';
+import useLocalStorge from '../../../hooks/useLocalStorage';
 
 import { 
   CategoryText, SearchIcon, Sub, 
@@ -8,6 +8,8 @@ import {
 } from './styled';
 
 function useResult(close) {
+  const { setSearchHistoryStorage } = useLocalStorge();
+
   function printSubList(subList) {
     return subList.map(item => {
       const type = item.type;  
@@ -114,7 +116,9 @@ function useResult(close) {
       default :
         break;
     }
-    UseLocalStorge(temp);
+
+    setSearchHistoryStorage(temp);
+    // 값을 클릭하고 나면 close 할 수 있도록 해야함!! 
     close();
   }
 

@@ -20,11 +20,12 @@ function SearchInput() {
 
   const {
     state,
+    isLoading,
     changeKeyword,
     reset,
   } = useSearch(setIsOpen);
 
-  const { subList, aptList, officeList, loading, total, keyword } = state;
+  const { subList, aptList, officeList, total, keyword } = state;
 
   return (
     <SearchWrap>
@@ -39,7 +40,7 @@ function SearchInput() {
               subList={subList}
               aptList={aptList}
               officeList={officeList}
-              loading={loading}
+              isLoading={isLoading}
               total={total}
               keyword={keyword}
               close={reset}

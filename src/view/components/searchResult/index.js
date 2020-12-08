@@ -1,9 +1,9 @@
 import React from 'react';
 
 import useResult from './useResult';
-import useLocalResult from './useLocalResult';
 
 import LodingScreen from './components/loading';
+import BaseComponent from './components/base';
 
 import {
   RecentList,
@@ -13,14 +13,12 @@ import {
   LodingText, LoadingWrap,
 } from './styled';
 
-function SearchResult({ subList, aptList, officeList, loading, total, keyword, close }) { 
+function SearchResult({ subList, aptList, officeList, isLoading, total, keyword, close }) { 
   const {
     printSubList,
     printOfficeList,
     printAptList, 
   } = useResult(close);
-  
-  const { recentLocalStorage } = useLocalResult();
 
   if (keyword === '') {
     return (
@@ -29,14 +27,14 @@ function SearchResult({ subList, aptList, officeList, loading, total, keyword, c
           <NoResult>인기 검색</NoResult>
           <NoResult>최근 검색 기록</NoResult>
           <SearchTitle>
-            {recentLocalStorage()}
+            <BaseComponent />
           </SearchTitle>
         </RecentList>
       </ResultWrap>
     );
   }
   
-  if (loading) {
+  if (isLoading) {
     return (
       <LodingScreen />
     );

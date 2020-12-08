@@ -1,13 +1,19 @@
+
 import React from 'react';
+
+import useLocalStorage from '../../../../../hooks/useLocalStorage';
+
 import { 
   CategoryText, SearchIcon, Sub, 
   LocalCategoryEtcText, RoomText
 } from './styled';
 
-function useLocalResult() {
-  const serchHistory = JSON.parse(localStorage.getItem('saveSearch')) || [];
-  function recentLocalStorage() {
-    return serchHistory.map(item => {
+function BaseComponent() {
+  const { getStorage } = useLocalStorage();
+  const getHistory = getStorage('saveSearch');
+
+  return (
+    getHistory.map(item => {
       const type = item.type;  
       const etcType = item.child;
       switch(type) {
@@ -17,7 +23,7 @@ function useLocalResult() {
               {/* 호버 만들기 */}
               <span>{item.name}</span>
               <SearchIcon>
-                {etcType?.length > 0 && etcType.map((etc, key) => {
+                {etcType.length > 0 && etcType.map((etc, key) => {
                   const isFilter = ['원룸', '투룸', '쓰리룸', '오피스텔', '아파트'].includes(etc.name);
                   return (
                     <Sub key={key} color={etc.color} isFilter={isFilter}>{etc.name}</Sub>
@@ -32,6 +38,8 @@ function useLocalResult() {
             <LocalCategoryEtcText key={item.id}>
               <span>{item.name}</span>
               <span className="adress">{item.complex_address}</span>
+              {/* length > 0 안해주면 bolder값만 나옴 */}
+              {/* ?. 해주면 etcType && 안해도댐 */}
               {etcType?.length > 0 &&
                 <SearchIcon>
                   {etcType && etcType.map((etc,index) => (
@@ -45,14 +53,13 @@ function useLocalResult() {
         default:
           return (
             <CategoryText key={item.type === 'region' ? item.code : item.id}>
-              {
-                item.type === 'region' ?
-                  <span>{item.full_name}</span>
-                  :
-                  <span>{item.name}</span>
-              }
+              {item.type === 'region' ? (
+                <span>{item.full_name}</span>
+              ) : (
+                <span>{item.name}</span>
+              )}
               <SearchIcon>
-                {etcType?.length > 0 && (
+                {etcType.length > 0 && etcType && (
                   <RoomText>
                     {etcType.map((etc, key) => (
                       <span key={key}>{etc.name}</span>
@@ -63,12 +70,8 @@ function useLocalResult() {
             </CategoryText>
           );
       }
-    });
-  }
-  
-  return {
-    recentLocalStorage
-  };
+    })
+  );
 }
 
-export default useLocalResult;
+export default BaseComponent;
